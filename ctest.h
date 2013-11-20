@@ -3,6 +3,7 @@
 
 #define CTEST_INIT() \
 int main(int argv, char *argc[]) { \
+    char *ctest_name_expression = argv > 0 ? argc[1] : "";
     int ctest_test_no = 0; \
     int ctest_results[1000]; \
     char ctest_names[1000][1000]; \
@@ -31,9 +32,11 @@ int main(int argv, char *argc[]) { \
     printf("\n\nTests:\n--------------------------------------------------------------------------------\n"); \
     int i = 0, result = 1, failed = 0; \
     for(i = 0; i < ctest_test_no; i++) { \
-        printf("%30s... %s\n", ctest_names[i], ctest_results[i] ? "OK" : "FAIL"); \
-        if(!ctest_results[i]) ++failed; \
-        result = result && ctest_results[i]; \
+        if(ctest_name_expression && strstr(ctest_names[i], ctest_name_expression)) { \
+            printf("%30s... %s\n", ctest_names[i], ctest_results[i] ? "OK" : "FAIL"); \
+            if(!ctest_results[i]) ++failed; \
+            result = result && ctest_results[i]; \
+        } \
     } \
     printf("\n\n%i out of %i tests failed.\n", failed, ctest_test_no); \
     return !result; \
