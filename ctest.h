@@ -17,15 +17,30 @@ int main(int argv, char *argc[]) { \
         printf("\t\t\t\t%s\n\n", ctest_results[ctest_test_no] ? "OK" : "FAIL"); \
         ctest_test_no++;
 
+/*
+ * Inline test for simple tests.
+ */
 #define CTEST_INLINE(test_name, body) \
     { \
         int test_function() body \
         __CTEST_SAVE_AND_RUN_TEST(test_name, test_function) \
     }
 
+/*
+ * Testing using a predefined function.
+ */
 #define CTEST_FUNCTION(test_name, function_name) \
     { \
         __CTEST_SAVE_AND_RUN_TEST(test_name, function_name) \
+    }
+
+#define CTEST_BLOCK_START() \
+    { \
+        int test_function() { \
+
+#define CTEST_BLOCK_FINISH(test_name) \
+        } \
+        __CTEST_SAVE_AND_RUN_TEST(test_name, test_function) \
     }
 
 #define CTEST_FINISH() \
