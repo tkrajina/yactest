@@ -22,7 +22,10 @@ int main(int argv, char *argc[]) { \
  */
 #define CTEST_INLINE(test_name, body) \
     { \
-        int test_function() body \
+        int test_function() { \
+            body; \
+            return 1; \
+        } \
         __CTEST_SAVE_AND_RUN_TEST(test_name, test_function) \
     }
 
@@ -39,6 +42,7 @@ int main(int argv, char *argc[]) { \
         int test_function() { \
 
 #define CTEST_BLOCK_FINISH(test_name) \
+            return 1; \
         } \
         __CTEST_SAVE_AND_RUN_TEST(test_name, test_function) \
     }
