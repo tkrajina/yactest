@@ -1,6 +1,9 @@
 #ifndef CTEST_H_INCLUDED
 #define CTEST_H_INCLUDED
 
+#include <string.h>
+#include <stdio.h>
+
 #define CTEST_INIT() \
 int main(int argv, char *argc[]) { \
     char *ctest_name_expression = argv > 0 ? argc[1] : "";
