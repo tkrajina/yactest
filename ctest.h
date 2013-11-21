@@ -55,7 +55,7 @@ int main(int argv, char *argc[]) { \
     int i = 0, result = 1, failed = 0; \
     for(i = 0; i < ctest_test_no; i++) { \
         if(!ctest_name_expression || (ctest_name_expression && strstr(ctest_names[i], ctest_name_expression))) { \
-            printf("%30s... %s\n", ctest_names[i], ctest_results[i] ? "OK" : "FAIL"); \
+            printf("%40s... %s\n", ctest_names[i], ctest_results[i] ? "OK" : "FAIL"); \
             if(!ctest_results[i]) ++failed; \
             result = result && ctest_results[i]; \
         } \
