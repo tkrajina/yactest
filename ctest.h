@@ -17,7 +17,7 @@ int main(int argv, char *argc[]) { \
         sprintf(ctest_names[ctest_test_no], "%s.%s", ctest_suite, #test_name); \
         printf("Running %s\n", ctest_names[ctest_test_no]); \
         ctest_results[ctest_test_no] = function_name(); \
-        printf("\t\t\t\t%s\n\n", ctest_results[ctest_test_no] ? "OK" : "FAIL"); \
+        printf("\t%s\n\n", ctest_results[ctest_test_no] ? "OK" : "FAIL"); \
         ctest_test_no++;
 
 /*
@@ -68,8 +68,10 @@ int main(int argv, char *argc[]) { \
     ctest_suite = #suite_name;
 
 #define CTEST_ASSERT(expression) \
-    if(!(expression)) { \
-        printf("Failed: %s -> %i\n", #expression, expression); \
+    if(expression) { \
+        printf("\tOK: %s\n", #expression); \
+    } else { \
+        printf("\tFailed: (%s) == %i\n", #expression, expression); \
         return 0; \
     }
 
