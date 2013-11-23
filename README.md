@@ -1,38 +1,32 @@
-# YCTest
+# YACTest
 
 (Yet another) Minimalistic C unit testing...
 
 Example:
 
-    #include <stdio.h>
-    #include <string.h>
+    #include "yactest.h"
 
-    #include "ctest.h"
+    YTESTS_INIT();
 
-    CTEST_INIT();
-        // Inline test:
-        CTEST_INLINE(test1234, {
-            CTEST_ASSERT(1 + 2 == 3);
-        });
+        YTEST_BEGIN(very_simple_test);
+            YTEST_ASSERT(1 + 2 == 3);
+        YTEST_END();
+
+        YTEST_BEGIN(another_very_simple_test);
+            YTEST_ASSERT(1 - 2 == -1);
+        YTEST_END();
 
         // Start new suite:
-        CTEST_SUITE(more_tests);
-
-        // Function test:
-        int test_function_alone() {
-            CTEST_ASSERT(3 * 4 == 12);
-            // Test functions must return true:
-            return 1;
-        }
-        CTEST_FUNCTION(test_with_function, test_function_alone);
+        YTEST_SUITE(more_tests);
 
         // Test block of code, this is the preferred way;
-        CTEST_BLOCK_START();
+        YTEST_BEGIN(block_test);
             int a = 1 + 2;
             int b = 5 - 2;
-            CTEST_ASSERT(a == b);
-        CTEST_BLOCK_FINISH(block_test);
-    CTEST_FINISH()
+            YTEST_ASSERT(a == b);
+        YTEST_END();
+
+    YTESTS_RUN()
 
 Run with:
 
