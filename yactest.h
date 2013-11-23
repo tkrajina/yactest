@@ -23,7 +23,11 @@ int main(int argv, char *argc[]) { \
         if(!ytest_results[i]) ++failed; \
         result = result && ytest_results[i]; \
     } \
-    printf("\n\n%i out of %i tests failed.\n", failed, ytest_test_no); \
+    if(failed) { \
+        printf("\n\n%i out of %i tests failed.\n", failed, ytest_test_no); \
+    } else { \
+        printf("\n\n %i test(s) OK.\n", ytest_test_no); \
+    } \
     return !result; \
 }
 

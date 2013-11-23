@@ -13,7 +13,6 @@ YTESTS_INIT();
     // Start new suite:
     YTEST_SUITE(more_tests);
 
-    // Test block of code, this is the preferred way;
     YTEST_BEGIN(block_test);
         int a = 1 + 2;
         int b = 5 - 2;
